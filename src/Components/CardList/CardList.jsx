@@ -5,7 +5,7 @@ import css from "./CardList.module.css";
 import { Loader } from "../Loader/Loader";
 
 export const CardList = ({ users, filter }) => {
-  const cardsLimit = 4;
+  const cardsLimit = 3;
   const [next, setNext] = useState(cardsLimit);
   const [sortedUsers, setSortedUsers] = useState([]);
   const onMoreCards = () => {
