@@ -6,15 +6,15 @@ import avatarDefault from "../../img/Hansel.png";
 export const Card = ({ user }) => {
   const { id, tweets, followers, avatar = avatarDefault } = user;
   const [isFollowing, setIsFollowing] = useState(
-    JSON.parse(localStorage.getItem(`${id}`)) ?? false
+    JSON.parse(localStorage.getItem(`${id}-isFollowing`)) ?? false
   );
   const [followersNum, setFollowersNum] = useState(
-    JSON.parse(localStorage.getItem(`${id}`)) ?? followers
+    JSON.parse(localStorage.getItem(`${id}-followersNum`)) ?? followers
   );
 
   useEffect(() => {
-    localStorage.setItem(`${id}`, JSON.stringify(isFollowing));
-    localStorage.setItem(`${id}`, JSON.stringify(followersNum));
+    localStorage.setItem(`${id}-isFollowing`, JSON.stringify(isFollowing));
+    localStorage.setItem(`${id}-followersNum`, JSON.stringify(followersNum));
   }, [isFollowing, id, followersNum]);
 
   const onFollowClick = () => {

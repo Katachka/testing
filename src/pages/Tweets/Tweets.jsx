@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { CardList } from "../../Components/CardList/CardList";
 import css from "./Tweets.module.css";
 import { Link } from "react-router-dom";
@@ -6,11 +6,11 @@ import usersData from "../../data/usersData.json";
 
 export const Tweets = () => {
   const users = usersData.users;
-  const [value, setValue] = useState("all");
+  // const [value, setValue] = useState("all");
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setValue(e.target.value);
+  // };
 
   return (
     <div className={css.tweetsContainer}>
@@ -19,7 +19,7 @@ export const Tweets = () => {
           ← Go back
         </Link>
       </div>
-      <div className={css.filterBox}>
+      {/* <div className={css.filterBox}>
         <label className={css.label}>
           Filter
           <select value={value} onChange={handleChange} className={css.list}>
@@ -28,8 +28,8 @@ export const Tweets = () => {
             <option value="followings">Followings</option>
           </select>
         </label>
-      </div>
-      <CardList filter={value} users={users} />
+      </div> */}
+      <CardList users={users} />
     </div>
   );
 };
