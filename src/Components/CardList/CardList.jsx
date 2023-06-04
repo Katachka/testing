@@ -7,25 +7,11 @@ import { Loader } from "../Loader/Loader";
 export const CardList = () => {
   const cardsLimit = 4;
   const [next, setNext] = useState(cardsLimit);
-  // const [sortedUsers, setSortedUsers] = useState([]);
+
   const onMoreCards = () => {
     setNext(next + cardsLimit);
   };
-  // useEffect(() => {
-  //   const filteredUsers = users.filter((user) => {
-  //     switch (filter) {
-  //       case "follow":
-  //         return !JSON.parse(localStorage.getItem(`${user.id}-isFollowing`));
-  //       case "followings":
-  //         return JSON.parse(localStorage.getItem(`${user.id}-isFollowing`));
-  //       case "all":
-  //         return true;
-  //       default:
-  //         return null;
-  //     }
-  //   });
-  //   setSortedUsers(filteredUsers);
-  // }, [filter, users]);
+
   return (
     <>
       <div className={css.list}>
