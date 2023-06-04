@@ -1,25 +1,30 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import css from "./Card.module.css";
 import logo from "../../img/logo.png";
+import avatarDefault from "../../img/Hansel.png";
 
 export const Card = ({ user }) => {
-  const { id } = user;
-  console.log(user);
+  const { id, tweets, followers, avatar = avatarDefault } = user;
   const [isFollowing, setIsFollowing] = useState(
     JSON.parse(localStorage.getItem(`${id}`)) ?? false
+  );
+  const [followersNum, setFollowersNum] = useState(
+    JSON.parse(localStorage.getItem(`${id}`)) ?? followers
   );
 
   useEffect(() => {
     localStorage.setItem(`${id}`, JSON.stringify(isFollowing));
-  }, [isFollowing, id]);
+    localStorage.setItem(`${id}`, JSON.stringify(followersNum));
+  }, [isFollowing, id, followersNum]);
 
   const onFollowClick = () => {
     setIsFollowing(true);
+    setFollowersNum(followersNum + 1);
   };
 
   const onFollowingClick = () => {
     setIsFollowing(false);
-    console.log(onFollowingClick);
+    setFollowersNum(followersNum - 1);
   };
   return (
     <div className={css.card}>
@@ -27,16 +32,18 @@ export const Card = ({ user }) => {
       <div className={css.container}>
         <div className={css.picture}></div>
         <div className={css.avatar}>
-          <div className={css.avatarImg}></div>
+          <img alt="avatar" src={avatar} className={css.avatarImg}></img>
         </div>
       </div>
-      <p className={css.tweets}> 777 tweets</p>
-      <p className={css.followers}>100,500 Followers</p>
+      <p className={css.tweets}> {tweets} tweets</p>
+      <p className={css.followers}>
+        {followersNum.toLocaleString("en-US")} Followers
+      </p>
       <div className={css.buttonBox}>
         {isFollowing ? (
           <button
             type="button"
-            className={css.button}
+            className={`${css.button} ${css.buttonFollowing}`}
             onClick={onFollowingClick}
           >
             Following
